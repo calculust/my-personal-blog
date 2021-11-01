@@ -11,6 +11,16 @@ export interface Authors {
     email: string;
 }
 
+export interface Tags {
+    id?: number;
+    name: string;
+}
+
+export interface BlogTags {
+    blogid: Blogs['id'];
+    tagid: Tags['id'];
+}
+
 interface MySQL_Success {
     fieldCount: number;
     affectedRows: number;
