@@ -1,64 +1,58 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { BrowserRouter, Switch, Route, Link, NavLink } from 'react-router-dom';
+import Emoji from './components/Emoji';
 
-/* HOOK REACT EXAMPLE */
+import Home from './views/Home';
+import Blog from './views/Blog';
+import CreateEdit from './views/CreateEdit';
+import Admin from './views/Admin';
+import Author from './views/Author';
+import Tag from './views/Tag';
+
 const App = (props: AppProps) => {
-	const [greeting, setGreeting] = useState<string>('');
-
-	useEffect(() => {
-		async function getGreeting() {
-			try {
-				const res = await fetch('/api/hello');
-				const greeting = await res.json();
-				setGreeting(greeting);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		getGreeting();
-	}, []);
-
 	return (
-		<main className="container my-5">
-			<h1 className="text-primary text-center">Hello {greeting}!</h1>
-		</main>
+		<BrowserRouter>
+			<nav className="navbar sticky-top p3 mb-5">
+				<div className="container-fluid">
+					<Link to="/" className="logo">Vishal's Blog</Link>
+					<div className="d-flex">
+						<Link to="/new" className="btn m-1"><Emoji symbol="✍️" label="write"/>New Post</Link>
+						<Link to="/admin" className="btn m-1"><Emoji symbol="⚙️" label="gear"/>Admin</Link>
+					</div>
+				</div>
+			</nav>
+			<main className="container my-5"> 
+				<Switch>
+					<Route exact path="/">
+						<Home />
+					</Route>
+					<Route exact path="/blog/:id/:status">
+						<Blog />
+					</Route>
+					<Route exact path="/blog/:id">
+						<Blog />
+					</Route>					
+					<Route exact path="/author/:id">
+						<Author />
+					</Route>
+					<Route exact path="/tag/:id">
+						<Tag />
+					</Route>
+					<Route exact path="/new">
+						<CreateEdit isEdit={false} />
+					</Route>
+					<Route exact path="/edit/:id">
+						<CreateEdit isEdit={true} />
+					</Route>
+					<Route exact path="/admin">
+						<Admin />
+					</Route>
+				</Switch>
+			</main>
+		</BrowserRouter>
 	);
 };
 
 interface AppProps {}
-
-/* CLASS REACT EXAMPLE */
-// class App extends React.Component<IAppProps, IAppState> {
-// 	constructor(props: IAppProps) {
-// 		super(props);
-// 		this.state = {
-// 			name: null
-// 		};
-// 	}
-
-// 	async componentDidMount() {
-// 		try {
-// 			let r = await fetch('/api/hello');
-// 			let name = await r.json();
-// 			this.setState({ name });
-// 		} catch (error) {
-// 			console.log(error);
-// 		}
-// 	}
-
-// 	render() {
-// 		return (
-// 			<main className="container my-5">
-// 				<h1 className="text-primary text-center">Hello {this.state.name}!</h1>
-// 			</main>
-// 		);
-// 	}
-// }
-
-// export interface IAppProps {}
-
-// export interface IAppState {
-// 	name: string;
-// }
 
 export default App;

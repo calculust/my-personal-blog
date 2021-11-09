@@ -1,5 +1,33 @@
 $theme-colors: (
-    'primary': #0091ea //Covalence Blue!  :D
+    'primary': #717EC3
 );
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+@import 'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap';
+.btn { color:#fff; }
+nav { background-color: #C95D63;}
+nav .btn { border:1px solid #fff; color:#fff; }
+nav .btn:hover { background-color:#DB9494; border-color:#DB9494; }
+.logo { font-family: 'Press Start 2P'; color:#fff; }
+.logo:hover { color:#fff; }
+.card { transition:0.5s}
+.card:hover { background-color:#FAF0F0; }
+.card-title { color:#717EC3;}
+
+.homeLinks h3 { color:#AE8799;}
+.homeLinks a { color:rgb(192, 192, 192); transition:0.5s;}
+.homeLinks a:hover { color:#EE8434; }
+.date, .author { font-size:0.9em;}
+.date { color:rgb(192, 192, 192);}
+
+.fullWidthWrapper { border: 1px solid rgba(0, 0, 0, 0.125); border-radius: 0.25rem; padding: 1rem 1rem;}
+
+.blogPost h2 { text-align: center;}
+.blogPost .blogInfo { text-align: center;}
+.blogContent { width:75%; margin:0 auto 50px auto; white-space: pre-wrap; }
+.blogControls { margin:0 auto; text-align: center;}
+.blogControls button { margin:0 10px; }
+
+@media only screen and (max-width: 600px) {
+    .blogContent { width:100%;}
+}

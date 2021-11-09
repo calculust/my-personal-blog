@@ -55,14 +55,14 @@ router.post('/', async (req, res) => {
 // PUT - Edit Blog
 router.put('/', async (req, res) => {
     try {
-        const { title, content, authorid, tagid, blogid } = req.body;
-        const db_response = await db.Blogs.update(title, content, authorid, blogid);
+        const { title, content, authorid, tagid, id } = req.body;
+        const db_response = await db.Blogs.update(title, content, authorid, id);
 
         const updatedblogtag = {
-            blogid: blogid,
+            blogid: id,
             tagid: tagid
         }
-        const db_response2 = await db.BlogTags.destroy(blogid);
+        const db_response2 = await db.BlogTags.destroy(id);
         const db_response3 = await db.BlogTags.create(updatedblogtag);
 
         if (db_response.affectedRows === 1) {
@@ -80,6 +80,7 @@ router.put('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const id = Number(req.params.id);
+        await db.BlogTags.destroy(id);
         await db.Blogs.destroy(id);
         res.json({ mesage: "The blog was deleted successfully." });
     } catch (e) {

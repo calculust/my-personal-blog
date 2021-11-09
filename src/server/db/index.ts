@@ -5,6 +5,7 @@ import { MySQL_Res } from '../../types';
 import Blogs from './queries/blogs';
 import Authors from './queries/authors';
 import BlogTags from './queries/blogtags';
+import Tags from './queries/tags';
 
 const pool = mysql.createPool({
     ...sqlConfig
@@ -25,5 +26,6 @@ export const Query = <T = MySQL_Res>(query: string, values?: Array<unknown>) => 
 export default {
     Blogs,
     Authors,
-    BlogTags
+    BlogTags,
+    Tags
 }
