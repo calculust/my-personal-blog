@@ -10,7 +10,7 @@ import { Tags } from '../../types';
 const Blog = (props: BlogProps) => {
     const history = useHistory();
     const { id, status } = useParams<{ id: string, status: string }>();
-    const [blog, setBlog] = useState(null);
+    const [blog, setBlog] = useState({ authorid:0, title: '', author: '', content: '', _created: '' });
     const [tags, setTags] = useState<Tags[]>(null);
     const editURL = `/edit/${id}`;
 
@@ -73,7 +73,8 @@ const Blog = (props: BlogProps) => {
             }
         }
         getBlog();
-    }, []);
+        document.title = `Vishal's Blog - ${blog.title}`;
+    }, [blog.title]);
 
     if(!blog || !tags) { /* To avoid crash when state is empty */
         return(

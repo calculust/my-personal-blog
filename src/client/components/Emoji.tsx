@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Emoji = props => (
+const Emoji = (props: EmojiProps)  => (
     <span
         className="emoji"
         role="img"
@@ -10,5 +10,10 @@ const Emoji = props => (
         {props.symbol}&nbsp;&nbsp;
     </span>
 );
+
+interface EmojiProps {
+    label: string;
+    symbol: string;
+}
 
 export default Emoji;

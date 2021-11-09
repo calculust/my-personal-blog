@@ -163,6 +163,9 @@ const CreateEdit = (props: CreateEditProps) => {
 
         if(props.isEdit) {
             getBlog();
+            document.title = `Vishal's Blog - Edit Post`;
+        } else {
+            document.title = `Vishal's Blog - Create Post`;
         }
     }, []);
 

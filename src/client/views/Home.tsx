@@ -47,6 +47,7 @@ const Home = (props: HomeProps) => {
         }
 
         getBlogs();
+        document.title = `Vishal's Blog - Home`;
     }, []);
 
     return (

@@ -9,7 +9,7 @@ const Tag = (props: TagProps) => {
     const history = useHistory();
     const { id } = useParams<{ id: string }>();
     const [blogs, setBlogs] = useState([]);
-    const [tag, setTag] = useState<Tags>();
+    const [tag, setTag] = useState<Tags>({ name: '' });
 
     const printBlogs = blogs.map(val => {
         return (
@@ -41,8 +41,8 @@ const Tag = (props: TagProps) => {
         }
 
         getBlogs();
-        
-    }, []);
+        document.title = `Vishal's Blog - Posts tagged #${tag.name}`;
+    }, [tag.name]);
 
     if(!tag || !blogs) { /* To avoid crash when state is empty */
         return(

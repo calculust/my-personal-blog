@@ -9,7 +9,7 @@ const Author = (props: AuthorProps) => {
     const history = useHistory();
     const { id } = useParams<{ id: string }>();
     const [blogs, setBlogs] = useState([]);
-    const [author, setAuthor] = useState<Authors>();
+    const [author, setAuthor] = useState<Authors>({ name: '', email: '' });
 
     const printBlogs = blogs.map(val => {
         return (
@@ -41,7 +41,8 @@ const Author = (props: AuthorProps) => {
         }
 
         getBlogs();
-    }, []);
+        document.title = `Vishal's Blog - Posts by ${author.name}`;
+    }, [author.name]);
 
     if(!author || !blogs) { /* To avoid crash when state is empty */
         return(

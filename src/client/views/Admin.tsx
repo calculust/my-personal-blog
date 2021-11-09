@@ -86,6 +86,7 @@ const Admin = (props: AdminProps) => {
             }
         }
         getData();
+        document.title = `Vishal's Blog - Admin`;
     }, [count]);
 
     if(!authors || !tags) { /* To avoid crash when state is empty */
