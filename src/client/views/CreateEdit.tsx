@@ -199,7 +199,7 @@ const CreateEdit = (props: CreateEditProps) => {
                             </Form.Select>
                         </FloatingLabel>
                         <FloatingLabel 
-                            label="Author"
+                            label="Tag"
                             className="mb-3"
                         >
                             <Form.Select 
