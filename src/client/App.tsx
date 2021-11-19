@@ -23,6 +23,7 @@ const App = (props: AppProps) => {
 					<Link to="/" className="logo">Vishal's Blog</Link>
 					<div className="d-flex">
 						<Link to="/new" className="btn m-1"><Emoji symbol="✍️" label="write"/>New Post</Link>
+						<Link to="/donate" className="btn m-1"><Emoji symbol="💸" label="money"/>Donate</Link>
 						<Link to="/admin" className="btn m-1"><Emoji symbol="⚙️" label="gear"/>Admin</Link>
 					</div>
 				</div>
