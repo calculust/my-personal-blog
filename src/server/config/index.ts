@@ -8,3 +8,7 @@ export const sqlConfig = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_SCHEMA
 }
+
+export const stripeConfig = {
+    secret: process.env.STRIPE_SECRET
+}

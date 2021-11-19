@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { BrowserRouter, Switch, Route, Link, NavLink } from 'react-router-dom';
 import Emoji from './components/Emoji';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
 import Home from './views/Home';
 import Blog from './views/Blog';
@@ -8,8 +10,12 @@ import CreateEdit from './views/CreateEdit';
 import Admin from './views/Admin';
 import Author from './views/Author';
 import Tag from './views/Tag';
+import Donate from './views/Donate';
 
 const App = (props: AppProps) => {
+
+	const stripe = loadStripe('pk_test_BCTJCRhh7sCzgYxAcA3Iw8UN');
+	
 	return (
 		<BrowserRouter>
 			<nav className="navbar sticky-top p3 mb-5">
@@ -46,6 +52,11 @@ const App = (props: AppProps) => {
 					</Route>
 					<Route exact path="/admin">
 						<Admin />
+					</Route>
+					<Route exact path="/donate">
+						<Elements stripe={stripe}>
+							<Donate />
+						</Elements>
 					</Route>
 				</Switch>
 			</main>

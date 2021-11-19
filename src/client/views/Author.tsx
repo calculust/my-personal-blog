@@ -41,7 +41,7 @@ const Author = (props: AuthorProps) => {
         }
 
         getBlogs();
-        document.title = `Vishal's Blog - Posts by ${author.name}`;
+        /* document.title = `Vishal's Blog - Posts by ${author.name}`;*/
     }, [author.name]);
 
     if(!author || !blogs) { /* To avoid crash when state is empty */
