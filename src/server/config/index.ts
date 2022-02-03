@@ -1,4 +1,4 @@
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -11,4 +11,10 @@ export const sqlConfig = {
 
 export const stripeConfig = {
     secret: process.env.STRIPE_SECRET
+}
+
+export const mailgunConfig = {
+    apiKey: process.env.MAILGUN_KEY,
+    domain: process.env.MAILGUN_DOMAIN,
+    toEmail: process.env.MAILGUN_TO_EMAIL
 }

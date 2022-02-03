@@ -1,4 +1,4 @@
-import * as mysql from 'mysql';
+import mysql from 'mysql';
 import { sqlConfig } from '../config';
 import { MySQL_Res } from '../../types';
 

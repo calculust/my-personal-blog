@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { Card, Placeholder } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom';

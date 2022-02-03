@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route, Link, NavLink } from 'react-router-dom';
 import Emoji from './components/Emoji';
 import { loadStripe } from '@stripe/stripe-js';
@@ -11,6 +11,8 @@ import Admin from './views/Admin';
 import Author from './views/Author';
 import Tag from './views/Tag';
 import Donate from './views/Donate';
+import Contact from './views/Contact';
+import Thanks from './views/Thanks';
 
 const App = (props: AppProps) => {
 
@@ -24,6 +26,7 @@ const App = (props: AppProps) => {
 					<div className="d-flex">
 						<Link to="/new" className="btn m-1"><Emoji symbol="✍️" label="write"/>New Post</Link>
 						<Link to="/donate" className="btn m-1"><Emoji symbol="💸" label="money"/>Donate</Link>
+						<Link to="/contact" className="btn m-1"><Emoji symbol="✉️" label="email"/>Contact</Link>
 						<Link to="/admin" className="btn m-1"><Emoji symbol="⚙️" label="gear"/>Admin</Link>
 					</div>
 				</div>
@@ -58,6 +61,12 @@ const App = (props: AppProps) => {
 						<Elements stripe={stripe}>
 							<Donate />
 						</Elements>
+					</Route>
+					<Route exact path="/contact">
+						<Contact />
+					</Route>
+					<Route exact path="/thanks">
+						<Thanks />
 					</Route>
 				</Switch>
 			</main>

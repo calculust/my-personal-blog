@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Button, Toast, ToastContainer, Form, FloatingLabel } from 'react-bootstrap';
