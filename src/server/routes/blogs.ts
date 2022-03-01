@@ -1,5 +1,7 @@
 import express from 'express';
 import db from '../db';
+import { ReqUser } from '../types'
+import { tokenCheck } from '../middlewares/auth.mw'
 
 let router = express.Router();
 
@@ -26,13 +28,15 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST - Create Blog
-router.post('/', async (req, res) => {
+router.post('/', tokenCheck, async (req: ReqUser, res) => {
     try {
         const newblogdata = req.body;
+        const newbloguser = req.user;
+        console.log(req.user);
         const newblog = {
             title: newblogdata.title,
             content: newblogdata.content,
-            authorid: newblogdata.authorid
+            authorid: newbloguser.userid
         }
         const db_response = await db.Blogs.create(newblog);
 
@@ -53,7 +57,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT - Edit Blog
-router.put('/', async (req, res) => {
+router.put('/', tokenCheck, async (req, res) => {
     try {
         const { title, content, authorid, tagid, id } = req.body;
         const db_response = await db.Blogs.update(title, content, authorid, id);
@@ -77,7 +81,7 @@ router.put('/', async (req, res) => {
 });
 
 // DELETE - Destroy Blog
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', tokenCheck, async (req, res) => {
     try {
         const id = Number(req.params.id);
         await db.BlogTags.destroy(id);

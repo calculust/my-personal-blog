@@ -1,17 +1,19 @@
 import { Router } from 'express';
-import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import { jwtConfig } from '../../config'
-import { ReqUser } from '../../types'
+import db from '../../db'
+import { generateHash } from '../../utils/passwords';
 
 const router = Router();
 
-router.post('/', passport.authenticate('local'), async (req: ReqUser, res) => {
-
+router.post('/', async (req, res) => {
+    const newAuthor = req.body;
     try {
+        newAuthor.password = generateHash(newAuthor.password);
+        const result = await db.Authors.create(newAuthor);
         
         const token = jwt.sign(
-            { userid: req.user.id, email: req.user.email, role: 1},
+            { userid: result.insertId, email: newAuthor.email, role: 1},
             jwtConfig.secret,
             { expiresIn: jwtConfig.expire}
         );

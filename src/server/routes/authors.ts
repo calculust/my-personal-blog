@@ -1,5 +1,6 @@
 import express from 'express';
 import db from '../db';
+import { tokenCheck } from '../middlewares/auth.mw'
 
 let router = express.Router();
 
@@ -50,7 +51,7 @@ router.get('/blogs/:id', async (req, res) => {
 });
 
 // POST - Create Author
-router.post('/', async (req, res) => {
+router.post('/', tokenCheck, async (req, res) => {
     try {
         const newauthor = req.body;
         const db_response = await db.Authors.create(newauthor);

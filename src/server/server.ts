@@ -1,29 +1,12 @@
 import express from 'express';
 import path from 'path';
-import passport from 'passport';
-import PassportLocal from 'passport-local';
 import apiRouter from './routes';
+import { configurePassport } from './middlewares/passport-strategies.mw';
+
 
 const app = express();
-
-import db from './db';
-import { compareHash } from './utils/passwords';
-passport.use(new PassportLocal.Strategy({
-    usernameField: 'email'
-}, async (email, password, done) => {
-    try {
-        const [userFound] = await db.Authors.find('email', email);
-        if (userFound && compareHash(password, userFound.password)) {
-            done(null, userFound);
-        } else {
-            
-        }
-    } catch (error) {
-        done(error);
-    }
-}));
-
-app.use(passport.initialize()); 
+ 
+configurePassport(app);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

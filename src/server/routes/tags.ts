@@ -1,5 +1,6 @@
 import express from 'express';
 import db from '../db';
+import { tokenCheck } from '../middlewares/auth.mw'
 
 let router = express.Router();
 
@@ -37,7 +38,7 @@ router.get('/blogs/:id', async (req, res) => {
 });
 
 // POST - Create Tag
-router.post('/', async (req, res) => {
+router.post('/', tokenCheck, async (req, res) => {
     try {
         const newtag = req.body;
         const db_response = await db.Tags.create(newtag);
